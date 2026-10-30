@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/PackingStage.tscn" id="packing"]
+[ext_resource type="Texture2D" path="res://assets/shared/speaker-0a73567785b4.png" id="speaker"]
+
+
+[node name="Stage" type="Node2D"]
+
+[node name="Packing" parent="." instance=ExtResource("packing")]
+
+[node name="Equipment" parent="Packing" index="1"]
+visible = false
+
+[node name="SpeakerLeft" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(740, 444)
+scale = Vector2(0.074, 0.074)
+texture = ExtResource("speaker")
+flip_h = true
+
+
+[node name="SpeakerRight" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(870, 444)
+scale = Vector2(0.074, 0.074)
+texture = ExtResource("speaker")
+
+
+[editable path="Packing"]

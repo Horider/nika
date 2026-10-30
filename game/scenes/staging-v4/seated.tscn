@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/shared/table-depth-c12d9fc2790e.png" id="room"]
+[ext_resource type="Texture2D" path="res://assets/shared/nika-reminds-5a57bec3c8a1.png" id="nika"]
+[ext_resource type="Texture2D" path="res://assets/shared/tablet-back-ef6d08b2c56e.png" id="tablet"]
+[ext_resource type="Texture2D" path="res://assets/shared/table-foreground-63529c17c844.png" id="front"]
+[ext_resource type="Texture2D" path="res://assets/shared/camera-56c428cc517f.png" id="camera"]
+[ext_resource type="Texture2D" path="res://assets/shared/speaker-0a73567785b4.png" id="speaker"]
+
+[node name="Stage" type="Node2D"]
+
+[node name="Room" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(0.9569377990430622, 0.9564293304994687)
+texture = ExtResource("room")
+
+
+[node name="Character" type="Node2D" parent="."]
+position = Vector2(544, 100)
+scale = Vector2(0.5, 0.5)
+
+[node name="Nika" type="Sprite2D" parent="Character"]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("nika")
+
+
+[node name="TableForeground" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("front")
+

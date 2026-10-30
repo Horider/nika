@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b4i7b6vm41b6p"]
+
+[ext_resource type="Texture2D" uid="uid://ba6w5puirtlyl" path="res://assets/shared/nika-standing-receive-30163404003e.png" id="nika"]
+[ext_resource type="Texture2D" uid="uid://pa7tq7a0qdef" path="res://assets/shared/entry-room-fe6d36eb3d1a.png" id="room"]
+[ext_resource type="Texture2D" uid="uid://cruao7btgsk6c" path="res://assets/shared/tablet-back-ef6d08b2c56e.png" id="tablet"]
+
+[node name="Stage" type="Node2D" unique_id=2138816527]
+
+[node name="Room" type="Sprite2D" parent="." unique_id=673414276]
+scale = Vector2(0.957, 0.956)
+texture = ExtResource("room")
+centered = false
+
+[node name="FootContact" type="Polygon2D" parent="." unique_id=709179291]
+color = Color(0.1, 0.07, 0.04, 0.23)
+polygon = PackedVector2Array(1025, 817.5, 1024.3844, 819.06433, 1022.5528, 820.59015, 1019.55035, 822.0399, 1015.45087, 823.37787, 1010.35535, 824.57104, 1004.3893, 825.59015, 997.6995, 826.4101, 990.45087, 827.01056, 982.8217, 827.3769, 975, 827.5, 967.1783, 827.3769, 959.54913, 827.01056, 952.3005, 826.4101, 945.6107, 825.59015, 939.64465, 824.57104, 934.54913, 823.37787, 930.44965, 822.0399, 927.4472, 820.59015, 925.6156, 819.06433, 925, 817.5, 925.6156, 815.93567, 927.4472, 814.40985, 930.44965, 812.9601, 934.54913, 811.62213, 939.64465, 810.42896, 945.6107, 809.40985, 952.3005, 808.5899, 959.54913, 807.98944, 967.1783, 807.6231, 975, 807.5, 982.8217, 807.6231, 990.45087, 807.98944, 997.6995, 808.5899, 1004.3893, 809.40985, 1010.35535, 810.42896, 1015.45087, 811.62213, 1019.55035, 812.9601, 1022.5528, 814.40985, 1024.3844, 815.93567)
+
+[node name="Character" type="Node2D" parent="." unique_id=2091973270]
+position = Vector2(665, 65)
+scale = Vector2(0.5, 0.5)
+
+[node name="Nika" type="Sprite2D" parent="Character" unique_id=1487793412]
+position = Vector2(8, 48)
+scale = Vector2(1, 0.991)
+texture = ExtResource("nika")
+centered = false
+
+[node name="Polygon2D" type="Polygon2D" parent="Character" unique_id=2094991165]
+position = Vector2(153.99998, 452)
+rotation = -1.0245082
+scale = Vector2(0.122962385, 0.1753045)
+texture = ExtResource("tablet")
+polygon = PackedVector2Array(321.32208, 142.77863, 276.92273, 1080.4194, 942.85767, 1213.6106, 992.58795, 69.96938)

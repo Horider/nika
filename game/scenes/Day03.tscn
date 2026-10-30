@@ -1,0 +1,6 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/Main.tscn" id="main"]
+[ext_resource type="PackedScene" path="res://scenes/day03/D03-S01-01-6be644620b.tscn" id="preview"]
+[node name="Day03" instance=ExtResource("main")]
+start_day = 3
+[node name="EditorPreview" parent="." instance=ExtResource("preview")]

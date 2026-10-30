@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/shared/packing-room-b700fcb660b1.png" id="room"]
+
+[ext_resource type="Texture2D" path="res://assets/shared/hero-bag-194febe790a7.png" id="bag"]
+
+[ext_resource type="Texture2D" path="res://assets/shared/test-bag-5065b314bbbe.png" id="pouch"]
+
+[ext_resource type="Texture2D" path="res://assets/shared/tablet-back-ef6d08b2c56e.png" id="tablet"]
+
+[node name="PackingStage" type="Node2D"]
+
+[node name="Room" type="Sprite2D" parent="."]
+
+centered = false
+
+scale = Vector2(0.9569377990430622, 0.9564293304994687)
+
+texture = ExtResource("room")
+
+[node name="Equipment" type="Node2D" parent="."]
+
+[node name="Contact0" type="Polygon2D" parent="Equipment"]
+
+position = Vector2(912, 489)
+
+polygon = PackedVector2Array(34.00, 0.00, 33.58, 0.78, 32.34, 1.55, 30.29, 2.27, 27.51, 2.94, 24.04, 3.54, 19.98, 4.05, 15.44, 4.46, 10.51, 4.76, 5.32, 4.94, 0.00, 5.00, -5.32, 4.94, -10.51, 4.76, -15.44, 4.46, -19.98, 4.05, -24.04, 3.54, -27.51, 2.94, -30.29, 2.27, -32.34, 1.55, -33.58, 0.78, -34.00, 0.00, -33.58, -0.78, -32.34, -1.55, -30.29, -2.27, -27.51, -2.94, -24.04, -3.54, -19.98, -4.05, -15.44, -4.46, -10.51, -4.76, -5.32, -4.94, -0.00, -5.00, 5.32, -4.94, 10.51, -4.76, 15.44, -4.46, 19.98, -4.05, 24.04, -3.54, 27.51, -2.94, 30.29, -2.27, 32.34, -1.55, 33.58, -0.78)
+
+color = Color(0.12, 0.08, 0.04, 0.24)
+
+[node name="Contact1" type="Polygon2D" parent="Equipment"]
+
+position = Vector2(973, 487)
+
+polygon = PackedVector2Array(28.00, 0.00, 27.66, 0.63, 26.63, 1.24, 24.95, 1.82, 22.65, 2.35, 19.80, 2.83, 16.46, 3.24, 12.71, 3.56, 8.65, 3.80, 4.38, 3.95, 0.00, 4.00, -4.38, 3.95, -8.65, 3.80, -12.71, 3.56, -16.46, 3.24, -19.80, 2.83, -22.65, 2.35, -24.95, 1.82, -26.63, 1.24, -27.66, 0.63, -28.00, 0.00, -27.66, -0.63, -26.63, -1.24, -24.95, -1.82, -22.65, -2.35, -19.80, -2.83, -16.46, -3.24, -12.71, -3.56, -8.65, -3.80, -4.38, -3.95, -0.00, -4.00, 4.38, -3.95, 8.65, -3.80, 12.71, -3.56, 16.46, -3.24, 19.80, -2.83, 22.65, -2.35, 24.95, -1.82, 26.63, -1.24, 27.66, -0.63)
+
+color = Color(0.12, 0.08, 0.04, 0.24)
+
+[node name="TestPouch0" type="Sprite2D" parent="Equipment"]
+
+centered = false
+
+position = Vector2(880, 429)
+
+scale = Vector2(0.118, 0.118)
+
+texture = ExtResource("pouch")
+
+[node name="TestPouch1" type="Sprite2D" parent="Equipment"]
+
+centered = false
+
+position = Vector2(950, 436)
+
+scale = Vector2(0.098, 0.098)
+
+texture = ExtResource("pouch")
+
+[node name="Tablet" type="Node2D" parent="."]
+
+position = Vector2(1080, 470)
+
+[node name="ContactShadow" type="Polygon2D" parent="Tablet"]
+
+polygon = PackedVector2Array(14, 3, 157, 3, 165, 27, 0, 27)
+
+color = Color(0.10, 0.07, 0.04, 0.24)
+
+[node name="Device" type="Polygon2D" parent="Tablet"]
+
+polygon = PackedVector2Array(15, 0, 155, 0, 162, 24, 0, 24)
+
+uv = PackedVector2Array(325, 145, 960, 80, 949, 1189, 280, 1080)
+
+texture = ExtResource("tablet")
+
+[node name="HangingBag" type="Node2D" parent="."]
+
+[node name="StrapContact" type="Polygon2D" parent="HangingBag"]
+
+polygon = PackedVector2Array(1047, 515, 1063, 515, 1092, 569, 1088, 584, 1078, 562)
+
+color = Color(0.12, 0.07, 0.03, 0.25)
+
+[node name="Bag" type="Sprite2D" parent="HangingBag"]
+
+centered = false
+
+position = Vector2(865, 500)
+
+scale = Vector2(0.27, 0.27)
+
+modulate = Color(1, 0.91, 0.79, 1)
+
+texture = ExtResource("bag")
+
+[node name="BackrestOcclusion" type="Polygon2D" parent="HangingBag"]
+
+polygon = PackedVector2Array(940, 518, 1054, 518, 1040, 575, 1015, 617, 940, 617)
+
+uv = PackedVector2Array(982.300, 541.598, 1101.430, 541.598, 1086.800, 601.194, 1060.675, 645.108, 982.300, 645.108)
+
+texture = ExtResource("room")

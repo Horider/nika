@@ -1,0 +1,124 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/story_text.gd" id="text"]
+[ext_resource type="Texture2D" path="res://assets/shared/side-vignette-d526a954bfb6.png" id="img3"]
+[ext_resource type="Texture2D" path="res://assets/shared/navigation-5fba237a1e67.png" id="img4"]
+
+
+[ext_resource type="PackedScene" path="res://scenes/staging-v4/packing-speakers.tscn" id="stage_v4"]
+
+[node name="D02-S05-promise-07" type="Node2D"]
+metadata/page_id = "D02-S05-promise-07"
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="StagingV4" parent="Art" instance=ExtResource("stage_v4")]
+
+[node name="03_side_vignette" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img3")
+metadata/asset_id = "a_d526a954bfb6be2a"
+
+[node name="04_navigation" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img4")
+metadata/asset_id = "a_5fba237a1e6788a8"
+
+[node name="InterfaceShapes" type="Node2D" parent="."]
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="day" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 59.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "day"
+font_kind = "sans"
+font_px = 20.000
+wrap_width = 70.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.874510, 0.749020, 0.501961, 1.000000)
+
+[node name="visit" type="Node2D" parent="Text"]
+position = Vector2(157.000000, 59.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "visit"
+font_kind = "sans"
+font_px = 20.000
+wrap_width = 132.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="title" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 164.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "title"
+font_kind = "serif"
+font_px = 37.000
+wrap_width = 465.000
+line_spacing = 1.100
+max_lines = 1
+wrap_text = true
+ink = Color(0.956863, 0.929412, 0.874510, 1.000000)
+
+[node name="description_1" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 239.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "description_1"
+font_kind = "serif"
+font_px = 25.000
+wrap_width = 430.000
+line_spacing = 1.400
+max_lines = 2
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="description_2" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 325.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "description_2"
+font_kind = "serif"
+font_px = 25.000
+wrap_width = 430.000
+line_spacing = 1.400
+max_lines = 1
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="next" type="Node2D" parent="Text"]
+position = Vector2(1424.000000, 860.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "next"
+font_kind = "sans"
+font_px = 20.000
+wrap_width = 63.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.149020, 0.196078, 0.239216, 1.000000)
+
+[node name="item_07" type="Node2D" parent="Text"]
+position = Vector2(1515.000000, 860.000000)
+script = ExtResource("text")
+page_key = "D02-S05-promise-07"
+text_key = "item_07"
+font_kind = "sans"
+font_px = 22.000
+wrap_width = 15.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.149020, 0.196078, 0.239216, 1.000000)

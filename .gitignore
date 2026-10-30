@@ -1,0 +1,5 @@
+game/.godot/
+*.import
+web/
+.cache/
+.DS_Store

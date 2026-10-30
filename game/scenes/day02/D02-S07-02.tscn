@@ -1,0 +1,152 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/story_text.gd" id="text"]
+[ext_resource type="Texture2D" path="res://assets/shared/window-a0ee4fb47e83.png" id="img0"]
+[ext_resource type="Texture2D" path="res://assets/shared/camera-56c428cc517f.png" id="img1"]
+[ext_resource type="Texture2D" path="res://assets/shared/side-vignette-d526a954bfb6.png" id="img2"]
+[ext_resource type="Texture2D" path="res://assets/shared/navigation-5fba237a1e67.png" id="img3"]
+
+[node name="D02-S07-02" type="Node2D"]
+metadata/page_id = "D02-S07-02"
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="00_background_original" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(0.956938, 0.956429)
+texture = ExtResource("img0")
+metadata/asset_id = "a_a0ee4fb47e8398a6"
+
+[node name="CameraContactShadows" type="Node2D" parent="Art"]
+
+[node name="Foot0" type="Polygon2D" parent="Art/CameraContactShadows"]
+position = Vector2(660, 785)
+polygon = PackedVector2Array(10.000, 0.000, 9.808, 0.507, 9.239, 0.995, 8.315, 1.444, 7.071, 1.838, 5.556, 2.162, 3.827, 2.402, 1.951, 2.550, 0.000, 2.600, -1.951, 2.550, -3.827, 2.402, -5.556, 2.162, -7.071, 1.838, -8.315, 1.444, -9.239, 0.995, -9.808, 0.507, -10.000, 0.000, -9.808, -0.507, -9.239, -0.995, -8.315, -1.444, -7.071, -1.838, -5.556, -2.162, -3.827, -2.402, -1.951, -2.550, -0.000, -2.600, 1.951, -2.550, 3.827, -2.402, 5.556, -2.162, 7.071, -1.838, 8.315, -1.444, 9.239, -0.995, 9.808, -0.507)
+color = Color(0.12, 0.10, 0.08, 0.18)
+
+[node name="Foot1" type="Polygon2D" parent="Art/CameraContactShadows"]
+position = Vector2(761, 812)
+polygon = PackedVector2Array(9.000, 0.000, 8.827, 0.507, 8.315, 0.995, 7.483, 1.444, 6.364, 1.838, 5.000, 2.162, 3.444, 2.402, 1.756, 2.550, 0.000, 2.600, -1.756, 2.550, -3.444, 2.402, -5.000, 2.162, -6.364, 1.838, -7.483, 1.444, -8.315, 0.995, -8.827, 0.507, -9.000, 0.000, -8.827, -0.507, -8.315, -0.995, -7.483, -1.444, -6.364, -1.838, -5.000, -2.162, -3.444, -2.402, -1.756, -2.550, -0.000, -2.600, 1.756, -2.550, 3.444, -2.402, 5.000, -2.162, 6.364, -1.838, 7.483, -1.444, 8.315, -0.995, 8.827, -0.507)
+color = Color(0.12, 0.10, 0.08, 0.18)
+
+[node name="Foot2" type="Polygon2D" parent="Art/CameraContactShadows"]
+position = Vector2(775, 770)
+polygon = PackedVector2Array(8.000, 0.000, 7.846, 0.390, 7.391, 0.765, 6.652, 1.111, 5.657, 1.414, 4.445, 1.663, 3.061, 1.848, 1.561, 1.962, 0.000, 2.000, -1.561, 1.962, -3.061, 1.848, -4.445, 1.663, -5.657, 1.414, -6.652, 1.111, -7.391, 0.765, -7.846, 0.390, -8.000, 0.000, -7.846, -0.390, -7.391, -0.765, -6.652, -1.111, -5.657, -1.414, -4.445, -1.663, -3.061, -1.848, -1.561, -1.962, -0.000, -2.000, 1.561, -1.962, 3.061, -1.848, 4.445, -1.663, 5.657, -1.414, 6.652, -1.111, 7.391, -0.765, 7.846, -0.390)
+color = Color(0.12, 0.10, 0.08, 0.18)
+
+[node name="01_camera" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(610, 625)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("img1")
+metadata/asset_id = "a_56c428cc517f7cfb"
+
+[node name="02_side_vignette" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img2")
+metadata/asset_id = "a_d526a954bfb6be2a"
+
+[node name="03_navigation" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img3")
+metadata/asset_id = "a_5fba237a1e6788a8"
+
+[node name="InterfaceShapes" type="Node2D" parent="."]
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="day" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 59.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "day"
+font_kind = "sans"
+font_px = 20.000
+wrap_width = 70.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.874510, 0.749020, 0.501961, 1.000000)
+
+[node name="visit" type="Node2D" parent="Text"]
+position = Vector2(157.000000, 59.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "visit"
+font_kind = "sans"
+font_px = 20.000
+wrap_width = 132.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="title" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 164.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "title"
+font_kind = "serif"
+font_px = 37.000
+wrap_width = 465.000
+line_spacing = 1.100
+max_lines = 1
+wrap_text = true
+ink = Color(0.956863, 0.929412, 0.874510, 1.000000)
+
+[node name="description_1" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 239.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "description_1"
+font_kind = "serif"
+font_px = 25.000
+wrap_width = 430.000
+line_spacing = 1.400
+max_lines = 2
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="description_2" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 325.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "description_2"
+font_kind = "serif"
+font_px = 25.000
+wrap_width = 430.000
+line_spacing = 1.400
+max_lines = 1
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="next" type="Node2D" parent="Text"]
+position = Vector2(1424.000000, 860.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "next"
+font_kind = "sans"
+font_px = 20.000
+wrap_width = 63.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.149020, 0.196078, 0.239216, 1.000000)
+
+[node name="item_07" type="Node2D" parent="Text"]
+position = Vector2(1515.000000, 860.000000)
+script = ExtResource("text")
+page_key = "D02-S07-02"
+text_key = "item_07"
+font_kind = "sans"
+font_px = 22.000
+wrap_width = 15.000
+line_spacing = 1.350
+max_lines = 1
+wrap_text = false
+ink = Color(0.149020, 0.196078, 0.239216, 1.000000)

@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/story_text.gd" id="text"]
+[ext_resource type="Texture2D" path="res://assets/shared/table-depth-c12d9fc2790e.png" id="img0"]
+[ext_resource type="Texture2D" path="res://assets/shared/nika-body-place-shape-left-empty-v1-d202683587ea.png" id="img1"]
+[ext_resource type="Texture2D" path="res://assets/shared/table-foreground-63529c17c844.png" id="img2"]
+[ext_resource type="Texture2D" path="res://assets/shared/shape-mat-7f060709b9ec.png" id="img3"]
+[ext_resource type="Texture2D" path="res://assets/shared/wood-circle-a97501154beb.png" id="img4"]
+[ext_resource type="Texture2D" path="res://assets/shared/wood-square-5ff2ecf408f1.png" id="img5"]
+[ext_resource type="Texture2D" path="res://assets/shared/wood-triangle-f50c3f5a5abe.png" id="img6"]
+[ext_resource type="Texture2D" path="res://assets/shared/nika-left-arm-2cac21dc78f3.png" id="img7"]
+[ext_resource type="Texture2D" path="res://assets/shared/side-vignette-d526a954bfb6.png" id="img8"]
+
+[node name="D03-S03-06-247742ca4c" type="Node2D"]
+metadata/page_id = "D03-S03-06-247742ca4c"
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="00_room" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(0.956938, 0.956938)
+texture = ExtResource("img0")
+metadata/asset_id = "a_c12d9fc2790eed97"
+
+[node name="01_nika_place_left" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(530.000000, 115.000000)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("img1")
+metadata/asset_id = "a_d202683587ea748d"
+
+[node name="02_table" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img2")
+metadata/asset_id = "a_63529c17c844e9c1"
+
+[node name="03_shape_mat" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(727.000000, 672.000000)
+scale = Vector2(0.691176, 0.691176)
+texture = ExtResource("img3")
+metadata/asset_id = "a_7f060709b9eccab4"
+
+[node name="04_wood_circle" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(757.646377, 672.933333)
+scale = Vector2(0.168116, 0.168116)
+texture = ExtResource("img4")
+metadata/asset_id = "a_a97501154bebb081"
+
+[node name="05_wood_square" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(901.241713, 666.230663)
+scale = Vector2(0.168508, 0.168508)
+texture = ExtResource("img5")
+metadata/asset_id = "a_5ff2ecf408f10e7e"
+
+[node name="06_wood_triangle" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(1045.240506, 669.253165)
+scale = Vector2(0.168776, 0.168776)
+texture = ExtResource("img6")
+metadata/asset_id = "a_f50c3f5a5abe0592"
+
+[node name="07_nika_left_arm" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(530.000000, 115.000000)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("img7")
+metadata/asset_id = "a_2cac21dc78f35036"
+
+[node name="08_vignette" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img8")
+metadata/asset_id = "a_d526a954bfb6be2a"
+
+[node name="InterfaceShapes" type="Node2D" parent="."]
+
+[node name="00_divider" type="Polygon2D" parent="InterfaceShapes"]
+position = Vector2(133.000000, 37.000000)
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 28, 0, 28)
+color = Color(0.5529411764705883,0.6039215686274509,0.6235294117647059,1)
+
+[node name="01_title_rule" type="Polygon2D" parent="InterfaceShapes"]
+position = Vector2(48.000000, 175.000000)
+polygon = PackedVector2Array(0, 0, 66, 0, 66, 2, 0, 2)
+color = Color(0.8313725490196079,0.7176470588235294,0.5098039215686274,1)
+
+[node name="02_navigation" type="Polygon2D" parent="InterfaceShapes"]
+position = Vector2(1394.000000, 826.000000)
+polygon = PackedVector2Array(0, 0, 158, 0, 158, 51, 0, 51)
+color = Color(0.8745098039215686,0.8274509803921568,0.7294117647058823,1)
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="day" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 60.000000)
+script = ExtResource("text")
+page_key = "D03-S03-06-247742ca4c"
+text_key = "day"
+font_kind = "sans"
+font_px = 19.000
+wrap_width = 90.000
+line_spacing = 1.842
+max_lines = 20
+wrap_text = true
+ink = Color(0.8313725490196079,0.7176470588235294,0.5098039215686274,1)
+
+[node name="visit" type="Node2D" parent="Text"]
+position = Vector2(157.000000, 60.000000)
+script = ExtResource("text")
+page_key = "D03-S03-06-247742ca4c"
+text_key = "visit"
+font_kind = "sans"
+font_px = 19.000
+wrap_width = 300.000
+line_spacing = 1.842
+max_lines = 20
+wrap_text = true
+ink = Color(0.9529411764705882,0.9254901960784314,0.8745098039215686,1)
+
+[node name="title" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 146.000000)
+script = ExtResource("text")
+page_key = "D03-S03-06-247742ca4c"
+text_key = "title"
+font_kind = "serif"
+font_px = 37.000
+wrap_width = 480.000
+line_spacing = 1.189
+max_lines = 20
+wrap_text = true
+ink = Color(0.9529411764705882,0.9254901960784314,0.8745098039215686,1)
+
+[node name="description" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 220.000000)
+script = ExtResource("text")
+page_key = "D03-S03-06-247742ca4c"
+text_key = "description"
+font_kind = "serif"
+font_px = 25.000
+wrap_width = 435.000
+line_spacing = 1.400
+max_lines = 20
+wrap_text = true
+ink = Color(0.9529411764705882,0.9254901960784314,0.8745098039215686,1)
+
+[node name="next" type="Node2D" parent="Text"]
+position = Vector2(1416.000000, 859.500000)
+script = ExtResource("text")
+page_key = "D03-S03-06-247742ca4c"
+text_key = "next"
+font_kind = "sans"
+font_px = 23.000
+wrap_width = 140.000
+line_spacing = 1.522
+max_lines = 1
+wrap_text = true
+ink = Color(0.14901960784313725,0.19607843137254902,0.23921568627450981,1)

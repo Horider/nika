@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://bggk408mlgnaf"]
+
+[ext_resource type="Texture2D" uid="uid://dpgxx312qc58k" path="res://assets/shared/side-vignette-d526a954bfb6.png" id="img3"]
+[ext_resource type="Texture2D" uid="uid://xgjjkh7ykwhu" path="res://assets/shared/navigation-5fba237a1e67.png" id="img4"]
+[ext_resource type="Texture2D" uid="uid://1gc7mo3nc0t7" path="res://assets/shared/panel-hero-a600d98730cc.png" id="img7"]
+[ext_resource type="PackedScene" uid="uid://bfwjtab64bjc" path="res://scenes/staging-v4/receive.tscn" id="stage_v4"]
+[ext_resource type="Script" uid="uid://c3m4meek1rrur" path="res://scripts/story_text.gd" id="text"]
+
+[node name="D02-S06-04" type="Node2D" unique_id=1175421147]
+metadata/page_id = "D02-S06-04"
+
+[node name="Art" type="Node2D" parent="." unique_id=1825319554]
+
+[node name="StagingV4" parent="Art" unique_id=1453236526 instance=ExtResource("stage_v4")]
+
+[node name="03_side_vignette" type="Sprite2D" parent="Art" unique_id=612606498]
+texture = ExtResource("img3")
+centered = false
+metadata/asset_id = "a_d526a954bfb6be2a"
+
+[node name="04_navigation" type="Sprite2D" parent="Art" unique_id=1372022860]
+texture = ExtResource("img4")
+centered = false
+metadata/asset_id = "a_5fba237a1e6788a8"
+
+[node name="07_dialogue_hero" type="Sprite2D" parent="Art" unique_id=1420392563]
+position = Vector2(48, 618)
+scale = Vector2(0.342368, 0.342491)
+texture = ExtResource("img7")
+centered = false
+metadata/asset_id = "a_a600d98730cce1aa"
+
+[node name="InterfaceShapes" type="Node2D" parent="." unique_id=1107511355]
+
+[node name="Text" type="Node2D" parent="." unique_id=19451949]
+
+[node name="day" type="Node2D" parent="Text" unique_id=158729761]
+position = Vector2(48, 59)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "day"
+font_kind = "sans"
+font_px = 20.0
+wrap_width = 70.0
+line_spacing = 1.35
+max_lines = 1
+wrap_text = false
+ink = Color(0.87451, 0.74902, 0.501961, 1)
+
+[node name="visit" type="Node2D" parent="Text" unique_id=1644886092]
+position = Vector2(157, 59)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "visit"
+font_kind = "sans"
+font_px = 20.0
+wrap_width = 132.0
+line_spacing = 1.35
+max_lines = 1
+wrap_text = false
+ink = Color(0.952941, 0.92549, 0.87451, 1)
+
+[node name="title" type="Node2D" parent="Text" unique_id=168805981]
+position = Vector2(48, 164)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "title"
+font_px = 37.0
+wrap_width = 465.0
+line_spacing = 1.1
+max_lines = 1
+ink = Color(0.956863, 0.929412, 0.87451, 1)
+
+[node name="description_1" type="Node2D" parent="Text" unique_id=684535430]
+position = Vector2(48, 239)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "description_1"
+font_px = 25.0
+max_lines = 2
+ink = Color(0.952941, 0.92549, 0.87451, 1)
+
+[node name="description_2" type="Node2D" parent="Text" unique_id=1217182970]
+position = Vector2(48, 325)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "description_2"
+font_px = 25.0
+max_lines = 2
+ink = Color(0.952941, 0.92549, 0.87451, 1)
+
+[node name="speaker" type="Node2D" parent="Text" unique_id=579071613]
+position = Vector2(130, 664)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "speaker"
+font_kind = "bold"
+font_px = 21.0
+wrap_width = 210.0
+line_spacing = 1.35
+max_lines = 1
+wrap_text = false
+ink = Color(0.294118, 0.345098, 0.392157, 1)
+
+[node name="dialogue" type="Node2D" parent="Text" unique_id=1115621731]
+position = Vector2(130, 706)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "dialogue"
+font_kind = "sans"
+font_px = 26.0
+wrap_width = 600.0
+line_spacing = 1.35
+max_lines = 3
+ink = Color(0.14902, 0.196078, 0.239216, 1)
+
+[node name="next" type="Node2D" parent="Text" unique_id=1589139873]
+position = Vector2(1424, 860)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "next"
+font_kind = "sans"
+font_px = 20.0
+wrap_width = 63.0
+line_spacing = 1.35
+max_lines = 1
+wrap_text = false
+ink = Color(0.14902, 0.196078, 0.239216, 1)
+
+[node name="item_16" type="Node2D" parent="Text" unique_id=235027977]
+position = Vector2(1515, 860)
+script = ExtResource("text")
+page_key = "D02-S06-04"
+text_key = "item_16"
+font_kind = "sans"
+font_px = 22.0
+wrap_width = 15.0
+line_spacing = 1.35
+max_lines = 1
+wrap_text = false
+ink = Color(0.14902, 0.196078, 0.239216, 1)
