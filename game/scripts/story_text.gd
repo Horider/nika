@@ -33,6 +33,14 @@ func _ready() -> void:
 				if get_font().get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, roundi(font_px)).x > wrap_width: overflow = true
 			if not overflow: break
 			font_px -= 1.0
+		# Tablet paragraphs are separate nodes. Reflow them using the actual
+		# bundled-font metrics instead of desktop line-count assumptions.
+		if text_key.begins_with("document_line_"):
+			for previous in get_parent().get_children():
+				if previous == self: break
+				if not previous.text_key.begins_with("document_"): continue
+				var bottom: float = previous.position.y + max(0, previous.get_lines().size() - 1) * previous.font_px * previous.line_spacing + previous.get_font().get_descent(roundi(previous.font_px))
+				position.y = maxf(position.y, bottom + get_font().get_ascent(roundi(font_px)) + 8.0)
 	queue_redraw()
 
 func get_font() -> Font:
