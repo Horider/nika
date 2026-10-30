@@ -192,8 +192,14 @@ func _render_page() -> void:
 		_button(interaction, "", Rect2(box[0], box[1], box[2], box[3]), _replay_audio, true).tooltip_text = "Прослушать сигналы"
 	_set_audio(page)
 
-func _next() -> void:
+func _next(automatic: bool = false) -> void:
 	if overlay_open: return
+	if not automatic and is_instance_valid(page_scene) and page_scene.has_node("Art/BirdFlight"):
+		var flight := page_scene.get_node("Art/BirdFlight")
+		if flight.elapsed < flight.VANISH_TIME and flow.skip_bird_flight():
+			_save()
+			_render_page()
+			return
 	if flow.advance():
 		_save()
 		_render_page()
@@ -230,7 +236,7 @@ func _process(_delta: float) -> void:
 		audio.stop()
 	if running and not overlay_open and is_instance_valid(page_scene) and page_scene.has_node("Art/BirdFlight"):
 		if page_scene.get_node("Art/BirdFlight").phase_finished():
-			_next()
+			_next(true)
 
 func _replay_audio() -> void:
 	_set_audio(flow.current(), true)

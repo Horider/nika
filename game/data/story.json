@@ -236,6 +236,16 @@
           "D02-S08-unseen-06",
           "D02-S08-unseen-07",
           "D02-S08-unseen-08"
+        ],
+        "skipped": [
+          "D02-S08-01",
+          "D02-S08-02",
+          "D02-S08-03",
+          "D02-S08-04",
+          "D02-S08-skipped-05",
+          "D02-S08-skipped-06",
+          "D02-S08-07",
+          "D02-S08-08"
         ]
       }
     },
@@ -51852,6 +51862,371 @@
         }
       ],
       "packed_scene": "res://scenes/day03/D03-S01-08-ddf9336cd0.tscn"
+    },
+    "D02-S08-skipped-05": {
+      "id": "D02-S08-skipped-05",
+      "beat_id": "D02-S08-05",
+      "scene": 8,
+      "beat": 5,
+      "variant": "base",
+      "subpage": 1,
+      "subpages": 1,
+      "panel": "hero",
+      "player_portrait": null,
+      "art": "window-camera",
+      "document": null,
+      "choices": [],
+      "source_frame": "day-02/scene-08/D02-S08-05.json",
+      "layers": [
+        {
+          "name": "background-original",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "assetId": "a_a0ee4fb47e8398a6"
+        },
+        {
+          "name": "camera",
+          "x": 610,
+          "y": 625,
+          "width": 216.15,
+          "height": 198,
+          "assetId": "a_56c428cc517f7cfb"
+        },
+        {
+          "name": "side-vignette",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "assetId": "a_d526a954bfb6be2a"
+        },
+        {
+          "name": "navigation",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "assetId": "a_5fba237a1e6788a8"
+        },
+        {
+          "name": "dialogue-hero",
+          "x": 48,
+          "y": 618,
+          "width": 720,
+          "height": 187,
+          "assetId": "a_a600d98730cce1aa"
+        }
+      ],
+      "clean": "clean/eec4f12d32c66649.png",
+      "file": "frames/D02-S08-05.png",
+      "svg": "layers/D02-S08-05.svg",
+      "json": "layers/D02-S08-05.json",
+      "thumb": "thumbnails/D02-S08-05.jpg",
+      "text_ref": "D02-S08-05",
+      "text_layout": [
+        {
+          "field": "day",
+          "x": 48,
+          "y": 59,
+          "width": 70,
+          "size": 20,
+          "kind": "sans",
+          "fill": "#dfbf80",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "visit",
+          "x": 157,
+          "y": 59,
+          "width": 132,
+          "size": 20,
+          "kind": "sans",
+          "fill": "#f3ecdf",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "title",
+          "x": 48,
+          "y": 164,
+          "width": 465,
+          "size": 37,
+          "kind": "serif",
+          "fill": "#f4eddf",
+          "leading": 1.1,
+          "wrap": true,
+          "max_lines": 1
+        },
+        {
+          "field": "description_1",
+          "x": 48,
+          "y": 239,
+          "width": 430,
+          "size": 25,
+          "kind": "serif",
+          "fill": "#f3ecdf",
+          "leading": 1.4,
+          "wrap": true,
+          "max_lines": 3
+        },
+        {
+          "field": "description_2",
+          "x": 48,
+          "y": 360,
+          "width": 430,
+          "size": 25,
+          "kind": "serif",
+          "fill": "#f3ecdf",
+          "leading": 1.4,
+          "wrap": true,
+          "max_lines": 2
+        },
+        {
+          "field": "speaker",
+          "x": 130,
+          "y": 664,
+          "width": 210,
+          "size": 21,
+          "kind": "bold",
+          "fill": "#4b5864",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "dialogue",
+          "x": 130,
+          "y": 706,
+          "width": 600,
+          "size": 26,
+          "kind": "sans",
+          "fill": "#26323d",
+          "leading": 1.35,
+          "wrap": true,
+          "max_lines": 3
+        },
+        {
+          "field": "next",
+          "x": 1424,
+          "y": 860,
+          "width": 63,
+          "size": 20,
+          "kind": "sans",
+          "fill": "#26323d",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "item_09",
+          "x": 1515,
+          "y": 860,
+          "width": 15,
+          "size": 22,
+          "kind": "sans",
+          "fill": "#26323d",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        }
+      ],
+      "nika_offscreen": true,
+      "day": 2,
+      "on_exit": [
+        {
+          "id": "d02.bird.not_witnessed",
+          "facts": {
+            "hero_saw_bird_disappear": false,
+            "hero_confirmed_bird_disappear": false,
+            "bird_reply_in_video": "Нет, я вещи собирал. Не видел."
+          }
+        }
+      ],
+      "audio": {},
+      "packed_scene": "res://scenes/day02/D02-S08-skipped-05.tscn"
+    },
+    "D02-S08-skipped-06": {
+      "id": "D02-S08-skipped-06",
+      "beat_id": "D02-S08-06",
+      "scene": 8,
+      "beat": 6,
+      "variant": "base",
+      "subpage": 1,
+      "subpages": 1,
+      "panel": "nika",
+      "player_portrait": null,
+      "art": "window-camera",
+      "document": null,
+      "choices": [],
+      "source_frame": "day-02/scene-08/D02-S08-06.json",
+      "layers": [
+        {
+          "name": "background-original",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "assetId": "a_a0ee4fb47e8398a6"
+        },
+        {
+          "name": "camera",
+          "x": 610,
+          "y": 625,
+          "width": 216.15,
+          "height": 198,
+          "assetId": "a_56c428cc517f7cfb"
+        },
+        {
+          "name": "side-vignette",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "assetId": "a_d526a954bfb6be2a"
+        },
+        {
+          "name": "navigation",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "assetId": "a_5fba237a1e6788a8"
+        },
+        {
+          "name": "dialogue-nika",
+          "x": 48,
+          "y": 663,
+          "width": 720,
+          "height": 142,
+          "assetId": "a_b25195fc1bc6e8fd"
+        }
+      ],
+      "clean": "clean/eec4f12d32c66649.png",
+      "file": "frames/D02-S08-06.png",
+      "svg": "layers/D02-S08-06.svg",
+      "json": "layers/D02-S08-06.json",
+      "thumb": "thumbnails/D02-S08-06.jpg",
+      "text_ref": "D02-S08-06",
+      "text_layout": [
+        {
+          "field": "day",
+          "x": 48,
+          "y": 59,
+          "width": 70,
+          "size": 20,
+          "kind": "sans",
+          "fill": "#dfbf80",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "visit",
+          "x": 157,
+          "y": 59,
+          "width": 132,
+          "size": 20,
+          "kind": "sans",
+          "fill": "#f3ecdf",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "title",
+          "x": 48,
+          "y": 164,
+          "width": 465,
+          "size": 37,
+          "kind": "serif",
+          "fill": "#f4eddf",
+          "leading": 1.1,
+          "wrap": true,
+          "max_lines": 1
+        },
+        {
+          "field": "description_1",
+          "x": 48,
+          "y": 239,
+          "width": 430,
+          "size": 25,
+          "kind": "serif",
+          "fill": "#f3ecdf",
+          "leading": 1.4,
+          "wrap": true,
+          "max_lines": 2
+        },
+        {
+          "field": "description_2",
+          "x": 48,
+          "y": 325,
+          "width": 430,
+          "size": 25,
+          "kind": "serif",
+          "fill": "#f3ecdf",
+          "leading": 1.4,
+          "wrap": true,
+          "max_lines": 2
+        },
+        {
+          "field": "speaker",
+          "x": 153,
+          "y": 702,
+          "width": 72,
+          "size": 17,
+          "kind": "bold",
+          "fill": "#4b5864",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "dialogue",
+          "x": 153,
+          "y": 746,
+          "width": 578,
+          "size": 26,
+          "kind": "sans",
+          "fill": "#26323d",
+          "leading": 1.35,
+          "wrap": true,
+          "max_lines": 2
+        },
+        {
+          "field": "next",
+          "x": 1424,
+          "y": 860,
+          "width": 63,
+          "size": 20,
+          "kind": "sans",
+          "fill": "#26323d",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        },
+        {
+          "field": "item_09",
+          "x": 1515,
+          "y": 860,
+          "width": 15,
+          "size": 22,
+          "kind": "sans",
+          "fill": "#26323d",
+          "leading": 1.35,
+          "wrap": false,
+          "max_lines": 1
+        }
+      ],
+      "nika_offscreen": true,
+      "day": 2,
+      "on_exit": [],
+      "audio": {},
+      "packed_scene": "res://scenes/day02/D02-S08-skipped-06.tscn"
     }
   },
   "assets": {

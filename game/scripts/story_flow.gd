@@ -41,7 +41,7 @@ func variant_for(scene: int) -> String:
 	if scene in [7, 9]:
 		return "declined" if state.listen == "no" else "base"
 	if scene == 8:
-		return "unseen" if state.listen == "no" else "base"
+		return "unseen" if state.listen == "no" else "skipped" if state.facts.get("bird_flight_skipped", false) else "base"
 	return "base"
 
 func sequence() -> Array:
@@ -58,6 +58,17 @@ func current() -> Dictionary:
 
 func can_advance() -> bool:
 	return not state.finished and current().choices.is_empty()
+
+func skip_bird_flight() -> bool:
+	# Only an early manual exit skips the observation. Listening is a separate fact.
+	if state.finished or current().id not in ["D02-S08-01", "D02-S08-02"]: return false
+	var page := current().duplicate(true)
+	page.on_exit = [] # Leaving the disappearance page early is not witnessing it.
+	_commit_page(page)
+	state.facts.merge({"bird_flight_skipped":true, "hero_saw_bird_disappear":false, "hero_confirmed_bird_disappear":false}, true)
+	state.events["d02.bird.flight_skipped"] = {"id":"d02.bird.flight_skipped", "day":2, "page_id":page.id, "facts":{"bird_flight_skipped":true, "hero_saw_bird_disappear":false}}
+	state.index = 3 # Rejoin at Nika's question, with the truthful unseen reply.
+	return true
 
 func _commit_page(page: Dictionary) -> void:
 	var words: Dictionary = strings[page.id]
