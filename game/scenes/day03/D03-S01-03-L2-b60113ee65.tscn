@@ -1,37 +1,21 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/story_text.gd" id="text"]
-[ext_resource type="Texture2D" path="res://assets/shared/table-depth-c12d9fc2790e.png" id="img0"]
-[ext_resource type="Texture2D" path="res://assets/shared/nika-table-e21b2b39ed84.png" id="img1"]
-[ext_resource type="Texture2D" path="res://assets/shared/table-foreground-63529c17c844.png" id="img2"]
 [ext_resource type="Texture2D" path="res://assets/shared/side-vignette-d526a954bfb6.png" id="img3"]
 [ext_resource type="Texture2D" path="res://assets/shared/panel-nika-b25195fc1bc6.png" id="img4"]
+
+
+[ext_resource type="Texture2D" path="res://assets/day03-entry/book-closed.jpg" id="still"]
 
 [node name="D03-S01-03-L2-b60113ee65" type="Node2D"]
 metadata/page_id = "D03-S01-03-L2-b60113ee65"
 
 [node name="Art" type="Node2D" parent="."]
 
-[node name="00_room" type="Sprite2D" parent="Art"]
+[node name="ClosedBook" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(0.000000, 0.000000)
-scale = Vector2(0.956938, 0.956938)
-texture = ExtResource("img0")
-metadata/asset_id = "a_c12d9fc2790eed97"
-
-[node name="01_nika" type="Sprite2D" parent="Art"]
-centered = false
-position = Vector2(544.000000, 100.000000)
-scale = Vector2(0.500000, 0.500000)
-texture = ExtResource("img1")
-metadata/asset_id = "a_e21b2b39ed846dab"
-
-[node name="02_table" type="Sprite2D" parent="Art"]
-centered = false
-position = Vector2(0.000000, 0.000000)
-scale = Vector2(1.000000, 1.000000)
-texture = ExtResource("img2")
-metadata/asset_id = "a_63529c17c844e9c1"
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("still")
 
 [node name="03_vignette" type="Sprite2D" parent="Art"]
 centered = false

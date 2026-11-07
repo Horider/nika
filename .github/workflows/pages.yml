@@ -22,6 +22,7 @@ jobs:
           mkdir -p web
           .cache/godot --headless --path game --editor --import --quit
           .cache/godot --headless --path game --export-release Web ../web/index.html
+          python3 ci/write_build_info.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

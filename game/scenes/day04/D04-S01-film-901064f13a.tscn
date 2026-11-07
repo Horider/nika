@@ -1,0 +1,17 @@
+[gd_scene format=3]
+[ext_resource type="VideoStream" path="res://assets/day04/book-shelving.ogv" id="movie"]
+[ext_resource type="Texture2D" path="res://assets/day04/shelf-end.jpg" id="end"]
+[node name="Reading" type="Node2D"]
+metadata/page_id = "D04-S01-film-901064f13a"
+[node name="Art" type="Node2D" parent="."]
+[node name="Poster" type="Sprite2D" parent="Art"]
+texture = ExtResource("end")
+centered = false
+scale = Vector2(1.25, 1.25)
+[node name="BookFilm" type="VideoStreamPlayer" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+expand = true
+mouse_filter = 2
+stream = ExtResource("movie")
+[node name="Text" type="Node2D" parent="."]

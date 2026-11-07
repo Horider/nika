@@ -1,12 +1,15 @@
 @tool
 extends Node2D
 @export var playback_mode: String = "before"
+var screen_position := Vector2(1132, 200)
+var screen_size := Vector2(346, 195)
+var picture_offset := Vector2(-500,-30)
 var flight: Node2D
 func _ready() -> void:
 	var screen := SubViewportContainer.new()
-	screen.position = Vector2(1132, 200)
+	screen.position = screen_position
 	screen.size = Vector2(500, 282)
-	screen.scale = Vector2(346.0/500.0, 195.0/282.0)
+	screen.scale = screen_size / Vector2(500,282)
 	screen.stretch = false
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(screen)
@@ -15,7 +18,7 @@ func _ready() -> void:
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	screen.add_child(viewport)
 	var world := Node2D.new()
-	world.position = Vector2(-500,-30)
+	world.position = picture_offset
 	viewport.add_child(world)
 	var background := Sprite2D.new()
 	background.centered = false

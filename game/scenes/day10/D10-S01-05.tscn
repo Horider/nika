@@ -1,0 +1,192 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/story_text.gd" id="text"]
+[ext_resource type="Texture2D" path="res://assets/shared/table-off-7b593fdbc20f.png" id="img0"]
+[ext_resource type="Texture2D" path="res://assets/shared/nika-table-e21b2b39ed84.png" id="img1"]
+[ext_resource type="Texture2D" path="res://assets/shared/table-off-foreground-33d7fd7ecd60.png" id="img2"]
+[ext_resource type="Texture2D" path="res://assets/shared/tablet-blank-7336ef9efe1a.png" id="img3"]
+[ext_resource type="Texture2D" path="res://assets/day06/participation-paper.png" id="img4"]
+[ext_resource type="Texture2D" path="res://assets/shared/side-vignette-d526a954bfb6.png" id="img5"]
+[ext_resource type="Texture2D" path="res://assets/shared/panel-hero-a600d98730cc.png" id="img6"]
+
+[node name="D10-S01-05" type="Node2D"]
+metadata/page_id = "D10-S01-05"
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="00_room_off" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(0.956938, 0.956429)
+texture = ExtResource("img0")
+metadata/asset_id = "a_7b593fdbc20f0f73"
+
+[node name="01_nika_table" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(544.000000, 100.000000)
+scale = Vector2(0.500000, 0.500000)
+texture = ExtResource("img1")
+metadata/asset_id = "a_e21b2b39ed846dab"
+
+[node name="02_table_foreground" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img2")
+metadata/asset_id = "a_33d7fd7ecd600351"
+
+[node name="03_nika_device" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(1110.000000, 684.000000)
+scale = Vector2(0.192449, 0.049724)
+texture = ExtResource("img3")
+metadata/asset_id = "a_7336ef9efe1aacf8"
+rotation = 0.06981317
+
+[node name="04_nika_notes" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(1344.000000, 708.000000)
+scale = Vector2(0.290553, 0.106029)
+texture = ExtResource("img4")
+metadata/asset_id = "a_14080e967b043bc4"
+rotation = -0.06981317
+
+[node name="05_vignette" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(0.000000, 0.000000)
+scale = Vector2(1.000000, 1.000000)
+texture = ExtResource("img5")
+metadata/asset_id = "a_d526a954bfb6be2a"
+
+[node name="06_panel_player" type="Sprite2D" parent="Art"]
+centered = false
+position = Vector2(48.000000, 618.067047)
+scale = Vector2(0.342368, 0.342368)
+texture = ExtResource("img6")
+metadata/asset_id = "a_a600d98730cce1aa"
+
+[node name="InterfaceShapes" type="Node2D" parent="."]
+
+[node name="00_divider" type="Polygon2D" parent="InterfaceShapes"]
+position = Vector2(133.000000, 37.000000)
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 28, 0, 28)
+color = Color(0.552941, 0.603922, 0.623529, 1.000000)
+
+[node name="01_title_rule" type="Polygon2D" parent="InterfaceShapes"]
+position = Vector2(48.000000, 207.000000)
+polygon = PackedVector2Array(0, 0, 66, 0, 66, 2, 0, 2)
+color = Color(0.831373, 0.717647, 0.509804, 1.000000)
+
+[node name="02_navigation" type="Polygon2D" parent="InterfaceShapes"]
+position = Vector2(1372.000000, 826.000000)
+polygon = PackedVector2Array(0, 0, 180, 0, 180, 51, 0, 51)
+color = Color(0.874510, 0.827451, 0.729412, 1.000000)
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="day" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 60.000000)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "day"
+font_kind = "sans"
+font_px = 19.000
+wrap_width = 95.000
+line_spacing = 1.340
+max_lines = 1
+wrap_text = true
+ink = Color(0.831373, 0.717647, 0.509804, 1.000000)
+
+[node name="visit" type="Node2D" parent="Text"]
+position = Vector2(157.000000, 60.000000)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "visit"
+font_kind = "sans"
+font_px = 19.000
+wrap_width = 410.000
+line_spacing = 1.340
+max_lines = 1
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="title" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 146.000000)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "title"
+font_kind = "serif"
+font_px = 35.000
+wrap_width = 475.000
+line_spacing = 1.340
+max_lines = 2
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="description" type="Node2D" parent="Text"]
+position = Vector2(48.000000, 260.000000)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "description"
+font_kind = "serif"
+font_px = 25.000
+wrap_width = 426.000
+line_spacing = 1.340
+max_lines = 9
+wrap_text = true
+ink = Color(0.952941, 0.925490, 0.874510, 1.000000)
+
+[node name="speaker" type="Node2D" parent="Text"]
+position = Vector2(131.000000, 664.067047)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "speaker"
+font_kind = "sans"
+font_px = 21.000
+wrap_width = 260.000
+line_spacing = 1.340
+max_lines = 1
+wrap_text = true
+ink = Color(0.294118, 0.345098, 0.392157, 1.000000)
+
+[node name="dialogue" type="Node2D" parent="Text"]
+position = Vector2(131.000000, 706.067047)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "dialogue"
+font_kind = "sans"
+font_px = 25.000
+wrap_width = 600.000
+line_spacing = 1.340
+max_lines = 2
+wrap_text = true
+ink = Color(0.149020, 0.196078, 0.239216, 1.000000)
+
+[node name="next" type="Node2D" parent="Text"]
+position = Vector2(1392.000000, 860.000000)
+script = ExtResource("text")
+page_key = "D10-S01-05"
+text_key = "next"
+font_kind = "sans"
+font_px = 22.000
+wrap_width = 150.000
+line_spacing = 1.340
+max_lines = 1
+wrap_text = true
+ink = Color(0.149020, 0.196078, 0.239216, 1.000000)
+
+
+[node name="Line0" type="Line2D" parent="Art/04_nika_notes"]
+width = 7
+default_color = Color(0.3,0.34,0.34,1)
+points = PackedVector2Array(85,210,410,210)
+
+[node name="Line1" type="Line2D" parent="Art/04_nika_notes"]
+width = 7
+default_color = Color(0.3,0.34,0.34,1)
+points = PackedVector2Array(85,305,410,305)
+
+[node name="Line2" type="Line2D" parent="Art/04_nika_notes"]
+width = 7
+default_color = Color(0.3,0.34,0.34,1)
+points = PackedVector2Array(85,400,410,400)

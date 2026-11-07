@@ -1,0 +1,186 @@
+{
+  "employer_start": 100,
+  "employer_floor": 0,
+  "nika_max": 8,
+  "warm_greeting": 3,
+  "insight_callback": 3,
+  "rules": [
+    {
+      "id": "d02.results.shown",
+      "label": "Дать Нике прочитать результаты сейчас или после обещания",
+      "nika": 1,
+      "employer": -20,
+      "insight": 1,
+      "warning": "Записи"
+    },
+    {
+      "id": "d02.results.promise_broken",
+      "label": "Отказать после обещания показать журнал",
+      "nika": -1,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d02.audio.contact_started",
+      "label": "Подойти к окну для личного прослушивания",
+      "nika": 0,
+      "employer": -20,
+      "insight": 0,
+      "group": "window",
+      "warning": "Аудио"
+    },
+    {
+      "id": "d02.bird.confirmed",
+      "label": "Увидеть исчезновение и обсудить отражение",
+      "nika": 0,
+      "employer": -20,
+      "insight": 1,
+      "group": "window",
+      "warning": "Разговор о птицах"
+    },
+    {
+      "id": "d02.sound.ordinary",
+      "label": "Предложить обычное объяснение звука",
+      "nika": 0,
+      "employer": 0,
+      "insight": 1
+    },
+    {
+      "id": "d02.sound.strange",
+      "label": "Согласиться, что повторение звука странное",
+      "nika": 1,
+      "employer": -10,
+      "insight": 3
+    },
+    {
+      "id": "d02.audio.completed",
+      "label": "Дослушать запись вместе",
+      "nika": 1,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d03.day2_results.late_shown",
+      "label": "Открыть Нике вчерашнюю страницу в день 3",
+      "nika": 1,
+      "employer": -20,
+      "insight": 1,
+      "group": "journal3"
+    },
+    {
+      "id": "d03.results.shown",
+      "label": "Показать сегодняшние результаты после тестов",
+      "nika": 1,
+      "employer": -20,
+      "insight": 1,
+      "group": "journal3"
+    },
+    {
+      "id": "d03.tea.accepted",
+      "label": "Остаться на чай после работы",
+      "nika": 0,
+      "employer": -20,
+      "insight": 0
+    },
+    {
+      "id": "d03.bird_video.viewed",
+      "label": "Посмотреть фрагмент записи Ники за чаем",
+      "nika": 1,
+      "employer": 0,
+      "insight": 1
+    },
+    {
+      "id": "d03.video.supported",
+      "label": "Поддержать вывод Ники после просмотра видео",
+      "nika": 1,
+      "employer": -20,
+      "insight": 2
+    },
+    {
+      "id": "d03.video.cautious",
+      "label": "Предложить сначала проверить запись",
+      "nika": 0,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d04.response_support",
+      "label": "Поддержать проверенное наблюдение о совпадении интервалов",
+      "nika": 1,
+      "employer": 0,
+      "insight": 1
+    },
+    {
+      "id": "d04.response_careful",
+      "label": "Подтвердить совпадение и оставить причину открытой",
+      "nika": 0,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d04.tea_shared",
+      "label": "После проверки остаться пить чай в четвёртом визите",
+      "nika": 0,
+      "employer": -20,
+      "insight": 0
+    },
+    {
+      "id": "d04.report_sent",
+      "label": "Исполнить договорённость и отправить запрос материалов",
+      "nika": 1,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d05.align.together",
+      "label": "По просьбе Ники совместить начало двух пролётов",
+      "nika": 1,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d05.comparison_confirmed",
+      "label": "Проверить повтор полёта на двух независимых записях",
+      "nika": 0,
+      "employer": 0,
+      "insight": 1
+    },
+    {
+      "id": "d06.prior_knowledge",
+      "label": "Ника узнаёт, что сотрудник с первого визита знал о воспроизведении",
+      "nika": -1,
+      "employer": 0,
+      "insight": 0
+    },
+    {
+      "id": "d07.tea_shared",
+      "label": "Принять чай в седьмом визите",
+      "nika": 0,
+      "employer": -20,
+      "insight": 0,
+      "group": "personal7"
+    },
+    {
+      "id": "d07.music_shared",
+      "label": "Послушать личную композицию Ники в седьмом визите",
+      "nika": 0,
+      "employer": -20,
+      "insight": 0,
+      "group": "personal7"
+    },
+    {
+      "id": "d08.room_disclosed",
+      "label": "Раскрыть назначение всей квартиры",
+      "nika": -1,
+      "employer": 0,
+      "insight": 1
+    },
+    {
+      "id": "d09.knowledge_admitted",
+      "label": "Признать прежнее знание о подготовке воспоминаний",
+      "nika": -1,
+      "employer": 0,
+      "insight": 1
+    }
+  ]
+}
