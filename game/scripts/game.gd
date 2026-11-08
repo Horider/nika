@@ -2,6 +2,7 @@ extends Node2D
 
 const Flow = preload("res://scripts/story_flow.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
+const ReplayScenes = preload("res://scripts/replay_scenes.gd")
 const DAY_TRANSITION_SECONDS := 3.0
 @export_range(0, 10) var start_day: int = 0
 var flow: RefCounted
@@ -26,6 +27,8 @@ var running := false
 var overlay_open := false
 var autosave_enabled := true
 var replaying := false
+var test_profile := false
+var replay_scenes: RefCounted
 var menu_font: Font
 var title_font: Font
 var menu_message := ""
@@ -37,6 +40,7 @@ func _ready() -> void:
 	catalog = JSON.parse_string(FileAccess.get_file_as_string("res://data/story.json"))
 	strings = JSON.parse_string(FileAccess.get_file_as_string("res://data/text.json"))
 	flow = Flow.new(catalog)
+	replay_scenes = ReplayScenes.new(catalog)
 	menu_font = preload("res://scripts/game_fonts.gd").get_font("sans")
 	title_font = preload("res://scripts/game_fonts.gd").get_font("serif")
 	interaction.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -60,6 +64,7 @@ func _ready() -> void:
 	if config.load("user://settings.cfg") == OK:
 		muted = bool(config.get_value("audio", "muted", false))
 		show_trust = bool(config.get_value("display", "show_trust", true))
+		test_profile = bool(config.get_value("profile", "test", false))
 	var args := OS.get_cmdline_user_args()
 	if "--capture" in args:
 		autosave_enabled = false
@@ -143,12 +148,15 @@ func _main_menu() -> void:
 	var heading := _show_overlay("Пока идёт запись")
 	heading.position.y = 190
 	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var saved := SaveStore.read(SaveStore.AUTO_PATH, catalog)
+	var saved := SaveStore.read(_auto_path(), catalog)
 	var resume := _button(overlay, "Продолжить", Rect2(570, 340, 460, 64), _resume_save)
 	resume.disabled = not saved.ok
 	_button(overlay, "Новая игра", Rect2(570, 425, 460, 64), _start_game.bind(1))
 	_button(overlay, "Настройки", Rect2(570, 510, 460, 64), _settings.bind(true))
-	if OS.is_debug_build():
+	if test_profile:
+		_label(overlay, "Тестовый профиль", Rect2(570,265,460,45),22).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_button(overlay, "Выбрать сцену", Rect2(570,595,460,64), _test_days)
+	elif OS.is_debug_build():
 		_button(overlay, "Загрузка", Rect2(570, 595, 460, 64), _day_menu)
 	if not menu_message.is_empty():
 		_label(overlay, menu_message, Rect2(300, 710, 1000, 90), 22).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -167,8 +175,8 @@ func _start_game(day: int, as_replay: bool = false) -> void:
 	replaying = as_replay
 	menu_message = ""
 	# Keep the previous run separately when explicitly beginning a new one.
-	if autosave_enabled and not replaying and FileAccess.file_exists(SaveStore.AUTO_PATH):
-		DirAccess.copy_absolute(ProjectSettings.globalize_path(SaveStore.AUTO_PATH), ProjectSettings.globalize_path("user://previous-run.json"))
+	if autosave_enabled and not replaying and FileAccess.file_exists(_auto_path()):
+		DirAccess.copy_absolute(ProjectSettings.globalize_path(_auto_path()), ProjectSettings.globalize_path("user://test-previous-run.json" if test_profile else "user://previous-run.json"))
 	flow.new_game(day)
 	running = true
 	_save()
@@ -193,8 +201,15 @@ func _begin_day_transition() -> void:
 	caption.add_theme_color_override("font_color", Color.WHITE)
 	day_transition.show()
 
-func _save(path: String = SaveStore.AUTO_PATH) -> bool:
+func _auto_path() -> String:
+	return "user://test-autosave.json" if test_profile else SaveStore.AUTO_PATH
+
+func _manual_path() -> String:
+	return "user://test-manual-save.json" if test_profile else SaveStore.MANUAL_PATH
+
+func _save(path: String = "") -> bool:
 	if not autosave_enabled or replaying: return true
+	if path.is_empty(): path = _auto_path()
 	var error := SaveStore.write(path, flow.snapshot())
 	if error != OK:
 		menu_message = "Не удалось сохранить игру: " + error_string(error)
@@ -202,17 +217,19 @@ func _save(path: String = SaveStore.AUTO_PATH) -> bool:
 		return false
 	return true
 
-func _resume_save(path: String = SaveStore.AUTO_PATH) -> void:
+func _resume_save(path: String = "") -> void:
+	if path.is_empty(): path = _auto_path()
 	var saved := SaveStore.read(path, catalog)
 	if not saved.ok or not flow.restore(saved.state):
 		menu_message = "Сохранение недоступно. Можно начать новую игру."
 		_main_menu()
 		return
 	running = true
+	replaying = false
 	day_transition_remaining = 0.0
 	day_transition.hide()
 	playback_page = ""
-	if path != SaveStore.AUTO_PATH: _save()
+	if path != _auto_path(): _save()
 	_render_page()
 
 func _render_page() -> void:
@@ -233,7 +250,8 @@ func _render_page() -> void:
 	overlay_open = false
 	interaction.visible = true
 	if flow.state.finished:
-		_show_end()
+		if flow.can_continue_visit(): _continue_visit()
+		else: _show_end()
 		return
 	var page: Dictionary = flow.current()
 	if playback_page != page.id:
@@ -426,6 +444,7 @@ func _save_settings() -> void:
 	config.load("user://settings.cfg")
 	config.set_value("audio", "muted", muted)
 	config.set_value("display", "show_trust", show_trust)
+	config.set_value("profile", "test", test_profile)
 	config.save("user://settings.cfg")
 
 func _settings(from_menu: bool) -> void:
@@ -433,11 +452,14 @@ func _settings(from_menu: bool) -> void:
 	var values: Dictionary = flow.state
 	var source := "Текущее прохождение"
 	if from_menu:
-		var saved := SaveStore.read(SaveStore.AUTO_PATH,catalog)
+		var saved := SaveStore.read(_auto_path(),catalog)
 		values = saved.state if saved.ok else Flow.new(catalog).state
 		source = "Последнее сохранение" if saved.ok else "Начало новой игры"
 	_button(overlay, "Звук " + ("выключен" if muted else "включён"), Rect2(104,230,590,60), func(): _mute(); _settings(from_menu))
 	_button(overlay, "Шкалы доверия " + ("видны" if show_trust else "скрыты"), Rect2(104,310,590,60), func(): show_trust = not show_trust; _save_settings(); _settings(from_menu))
+	_button(overlay, "Тестовый профиль: " + ("включён" if test_profile else "выключен"), Rect2(970,575,525,60), _switch_profile)
+	_label(overlay,"Все дни и сцены для переигрывания. Отдельное сохранение.",Rect2(970,645,525,70),21)
+	if test_profile: _button(overlay,"Выбрать сцену",Rect2(970,735,525,60),_test_days)
 	_label(overlay, "Управление", Rect2(970,230,550,55), 30, true)
 	_label(overlay, "Пробел / Enter / → — далее\nEsc — пауза\nH — прочитанное · J — отчёты\nM — звук · F11 — полный экран", Rect2(970,305,565,220), 23)
 	if show_trust:
@@ -445,6 +467,47 @@ func _settings(from_menu: bool) -> void:
 		_trust_bar("Доверие Ники",values.nika_trust,Flow.Trust.config.nika_max,475)
 		_trust_bar("Доверие работодателя",values.employer_trust,Flow.Trust.config.employer_start,595)
 	_button(overlay, "Вернуться", Rect2(104,785,270,60), _main_menu if from_menu else _pause)
+
+func _switch_profile() -> void:
+	if running: _save()
+	test_profile = not test_profile
+	_save_settings()
+	_main_menu()
+	_settings(true)
+
+func _test_days() -> void:
+	if not test_profile: return
+	_show_overlay("Выбор дня", "Тестовый профиль · все сцены доступны")
+	for day in range(1,11):
+		_button(overlay,"День %d" % day,Rect2(104+650*((day-1)/5),290+74*((day-1)%5),460,54),_test_scene_menu.bind(day))
+	_button(overlay,"Настройки",Rect2(104,785,270,60),_settings.bind(not running))
+	_button(overlay,"Главное меню",Rect2(425,785,300,60),_main_menu)
+
+func _test_scene_menu(day: int) -> void:
+	if not test_profile: return
+	_show_overlay("День %d · выбор сцены" % day, "Выберите начало сцены. Дальше можно играть и принимать решения.")
+	var scroll := ScrollContainer.new()
+	scroll.position = Vector2(104,290)
+	scroll.size = Vector2(1390,450)
+	var entries: Array = replay_scenes.entries(day)
+	var list := Control.new()
+	list.custom_minimum_size = Vector2(1350,70*entries.size())
+	for i in entries.size():
+		var entry: Dictionary = entries[i]
+		_button(list,"%02d   %s" % [i+1,entry.title],Rect2(0,70*i,1320,58),_start_test_scene.bind(entry))
+	scroll.add_child(list)
+	overlay.add_child(scroll)
+	_button(overlay,"Выбрать день",Rect2(104,785,300,60),_test_days)
+	_button(overlay,"Начать день",Rect2(1110,785,380,60),_start_game.bind(day))
+
+func _start_test_scene(entry: Dictionary) -> void:
+	if not test_profile: return
+	if not flow.restore(entry.state): return
+	replaying = false
+	running = true
+	menu_message = ""
+	_save()
+	_begin_day_transition()
 
 func _trust_bar(title: String, amount: int, maximum: int, y: int) -> void:
 	_label(overlay,"%s   %d / %d" % [title,amount,maximum],Rect2(104,y,950,52),28)
@@ -464,14 +527,14 @@ func _pause() -> void:
 	_button(overlay, "Вернуться", Rect2(104, 310, 460, 62), _render_page)
 	if not replaying:
 		_button(overlay, "Сохранить вручную", Rect2(104, 390, 460, 62), _manual_save)
-		_button(overlay, "Загрузить вручную", Rect2(104, 470, 460, 62), _resume_save.bind(SaveStore.MANUAL_PATH)).disabled = not SaveStore.read(SaveStore.MANUAL_PATH, catalog).ok
+		_button(overlay, "Загрузить вручную", Rect2(104, 470, 460, 62), _resume_save.bind(_manual_path())).disabled = not SaveStore.read(_manual_path(), catalog).ok
 	_button(overlay, "Прочитанное", Rect2(104, 550, 460, 62), _history)
 	_button(overlay, "Отчёты", Rect2(104, 630, 460, 62), _journal)
 	_button(overlay, "Главное меню", Rect2(104, 710, 460, 62), _main_menu)
 	_button(overlay, "Настройки", Rect2(770, 310, 460, 62), _settings.bind(false))
 
 func _manual_save() -> void:
-	if _save(SaveStore.MANUAL_PATH):
+	if _save(_manual_path()):
 		_pause()
 		_label(overlay, "Сохранено", Rect2(770, 390, 500, 60), 25)
 
@@ -534,8 +597,6 @@ func _show_end() -> void:
 	var title: String = {2:"Второй визит завершён",3:"Третий визит завершён",4:"Четвёртый визит завершён",5:"Пятый визит завершён",6:"Шестой визит завершён",7:"Седьмой визит завершён",8:"Восьмой визит завершён",9:"Девятый визит завершён",10:"Свой следующий шаг"}.get(int(flow.state.day),"Визит завершён")
 	if int(flow.state.day) == 10 and not dismissed: text = "Ника завершила участие. Материалы и управление остались у неё. Запись «Комната» сохранена."
 	_show_overlay("Допуск отозван" if dismissed else title, text)
-	if flow.can_continue_visit():
-		_button(overlay, "Продолжить · день %d" % (int(flow.state.day)+1), Rect2(750,330,590,64), _continue_visit)
 	_button(overlay, "Отчёты", Rect2(104, 330, 460, 64), _journal)
 	_button(overlay, "Прочитанное", Rect2(104, 420, 460, 64), _history)
 	_button(overlay, "Главное меню", Rect2(104, 510, 460, 64), _main_menu)

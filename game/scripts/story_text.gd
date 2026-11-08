@@ -54,6 +54,14 @@ func _ready() -> void:
 				if not previous.text_key.begins_with("document_"): continue
 				var bottom: float = previous.position.y + max(0, previous.get_lines().size() - 1) * previous.font_px * previous.line_spacing + previous.get_font().get_descent(roundi(previous.font_px))
 				position.y = maxf(position.y, bottom + get_font().get_ascent(roundi(font_px)) + 8.0)
+	if text_key == "document_title":
+		# The white screen starts below the tablet's camera/bezel. Authored
+		# baselines alone put tall Cyrillic glyphs against its upper edge.
+		var art := get_parent().get_parent().get_node_or_null("Art")
+		if art:
+			for tablet in art.get_children():
+				if tablet is Sprite2D and "tablet" in str(tablet.name) and tablet.texture and tablet.texture.resource_path.get_file() == "tablet-blank-7336ef9efe1a.png" and tablet.texture.get_height()*tablet.scale.y >= 300.0:
+					position.y = maxf(position.y, tablet.position.y + 112.0 * tablet.scale.y + 20.0 + get_font().get_ascent(roundi(font_px)))
 	queue_redraw()
 
 func _fit_dialogue_panel() -> bool:
