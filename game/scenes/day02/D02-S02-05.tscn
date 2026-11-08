@@ -39,14 +39,14 @@ metadata/asset_id = "a_63529c17c844e9c1"
 
 [node name="03_coaster" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(843.000000, 746.000000)
+position = Vector2(733.000000, 746.000000)
 scale = Vector2(0.178571, 0.177700)
 texture = ExtResource("img3")
 metadata/asset_id = "a_3bf1681cde98704b"
 
 [node name="04_mug_empty" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(852.000000, 652.000000)
+position = Vector2(742.000000, 652.000000)
 scale = Vector2(0.142962, 0.143105)
 texture = ExtResource("img4")
 metadata/asset_id = "a_5e65f88e83f25edf"

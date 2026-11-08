@@ -40,21 +40,21 @@ metadata/asset_id = "a_63529c17c844e9c1"
 
 [node name="03_coaster" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(843.000000, 746.000000)
+position = Vector2(733.000000, 746.000000)
 scale = Vector2(0.178571, 0.177700)
 texture = ExtResource("img3")
 metadata/asset_id = "a_3bf1681cde98704b"
 
 [node name="04_mug_full" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(852.000000, 652.000000)
+position = Vector2(742.000000, 652.000000)
 scale = Vector2(0.373563, 0.374150)
 texture = ExtResource("img4")
 metadata/asset_id = "a_730013a4392afc04"
 
 [node name="05_bottle_remaining" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(998.000000, 568.000000)
+position = Vector2(888.000000, 568.000000)
 scale = Vector2(0.200000, 0.199729)
 texture = ExtResource("img5")
 metadata/asset_id = "a_f38a4631fae9b3e6"

@@ -26,7 +26,7 @@ metadata/asset_id = "a_c12d9fc2790eed97"
 
 [node name="01_nika_table" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(654.000000, 100.000000)
+position = Vector2(544.000000, 100.000000)
 scale = Vector2(0.500000, 0.500000)
 texture = ExtResource("img1")
 metadata/asset_id = "a_bf6a17df62547acd"
@@ -40,35 +40,35 @@ metadata/asset_id = "a_63529c17c844e9c1"
 
 [node name="03_nika_arm_over_table" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(654.000000, 100.000000)
+position = Vector2(544.000000, 100.000000)
 scale = Vector2(0.500000, 0.500000)
 texture = ExtResource("img3")
 metadata/asset_id = "a_5cded0a9665471c2"
 
 [node name="04_coaster" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(843.000000, 746.000000)
+position = Vector2(733.000000, 746.000000)
 scale = Vector2(0.178571, 0.177700)
 texture = ExtResource("img4")
 metadata/asset_id = "a_3bf1681cde98704b"
 
 [node name="05_mug_full" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(852.000000, 652.000000)
+position = Vector2(742.000000, 652.000000)
 scale = Vector2(0.373563, 0.374150)
 texture = ExtResource("img5")
 metadata/asset_id = "a_730013a4392afc04"
 
 [node name="06_bottle_remaining" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(998.000000, 568.000000)
+position = Vector2(888.000000, 568.000000)
 scale = Vector2(0.200000, 0.199729)
 texture = ExtResource("img6")
 metadata/asset_id = "a_f38a4631fae9b3e6"
 
 [node name="07_nika_fingers_over_bottle" type="Sprite2D" parent="Art"]
 centered = false
-position = Vector2(654.000000, 100.000000)
+position = Vector2(544.000000, 100.000000)
 scale = Vector2(0.500000, 0.500000)
 texture = ExtResource("img7")
 metadata/asset_id = "a_66b8766cf40ca0dc"

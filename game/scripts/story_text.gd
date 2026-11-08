@@ -27,10 +27,10 @@ func _ready() -> void:
 		return
 	# Descriptions share a column. Fit and space the whole column together:
 	# shrinking each paragraph to its old line count produced mismatched type.
-	if text_key.begins_with("description_"):
+	if text_key.begins_with("description"):
 		var paragraphs: Array[Node] = []
 		for sibling in get_parent().get_children():
-			if sibling.get_script() == get_script() and sibling.text_key.begins_with("description_"):
+			if sibling.get_script() == get_script() and sibling.text_key.begins_with("description"):
 				paragraphs.append(sibling)
 		if paragraphs.back() == self:
 			_layout_descriptions(paragraphs)
@@ -98,6 +98,17 @@ func _layout_descriptions(paragraphs: Array[Node]) -> void:
 	var authored_y: Array[float] = []
 	var size: float = paragraphs[0].font_px
 	var limit := 800.0
+	var minimum_top := 0.0
+	var title := get_parent().get_node_or_null("title")
+	if title and title.get_script() == get_script():
+		var title_bottom: float = title.position.y + max(0, title.get_lines().size() - 1) * title.font_px * title.line_spacing + title.get_font().get_descent(roundi(title.font_px))
+		minimum_top = title_bottom + 32.0
+		var shapes := get_parent().get_parent().get_node_or_null("InterfaceShapes")
+		if shapes:
+			for shape in shapes.get_children():
+				if "title_rule" in str(shape.name):
+					shape.position.y = maxf(shape.position.y, title_bottom + 20.0)
+					minimum_top = maxf(minimum_top, shape.position.y + 22.0)
 	for paragraph in paragraphs:
 		authored_y.append(paragraph.position.y)
 		size = minf(size, paragraph.font_px)
@@ -118,7 +129,9 @@ func _layout_descriptions(paragraphs: Array[Node]) -> void:
 			var paragraph := paragraphs[i]
 			paragraph.font_px = size
 			paragraph.position.y = authored_y[i]
-			if i > 0:
+			if i == 0:
+				paragraph.position.y = maxf(paragraph.position.y, minimum_top + paragraph.get_font().get_ascent(roundi(size)))
+			else:
 				paragraph.position.y = maxf(paragraph.position.y, bottom + paragraph.get_font().get_ascent(roundi(size)) + 17.0)
 			bottom = paragraph.position.y + max(0, paragraph.get_lines().size() - 1) * size * paragraph.line_spacing + paragraph.get_font().get_descent(roundi(size))
 		if bottom <= limit or size <= minimum: break

@@ -2995,7 +2995,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -3003,7 +3003,7 @@
         },
         {
           "name": "mug-empty",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -3204,7 +3204,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -3212,7 +3212,7 @@
         },
         {
           "name": "mug-empty",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -3413,7 +3413,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -3421,7 +3421,7 @@
         },
         {
           "name": "mug-empty",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -3629,7 +3629,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -3637,7 +3637,7 @@
         },
         {
           "name": "mug-empty",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -3838,7 +3838,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -3846,7 +3846,7 @@
         },
         {
           "name": "mug-empty",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -4047,7 +4047,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -4055,7 +4055,7 @@
         },
         {
           "name": "mug-empty",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -4240,7 +4240,7 @@
         },
         {
           "name": "nika-table",
-          "x": 654,
+          "x": 544,
           "y": 100,
           "width": 512,
           "height": 768,
@@ -4257,14 +4257,14 @@
         {
           "name": "nika-arm-over-table",
           "assetId": "a_5cded0a9665471c2",
-          "x": 654,
+          "x": 544,
           "y": 100,
           "width": 512,
           "height": 768
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -4272,7 +4272,7 @@
         },
         {
           "name": "mug-full",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -4280,7 +4280,7 @@
         },
         {
           "name": "bottle-remaining",
-          "x": 998,
+          "x": 888,
           "y": 568,
           "width": 213,
           "height": 295,
@@ -4289,7 +4289,7 @@
         {
           "name": "nika-fingers-over-bottle",
           "assetId": "a_66b8766cf40ca0dc",
-          "x": 654,
+          "x": 544,
           "y": 100,
           "width": 512,
           "height": 768
@@ -4462,7 +4462,7 @@
         },
         {
           "name": "coaster",
-          "x": 843,
+          "x": 733,
           "y": 746,
           "width": 200,
           "height": 102,
@@ -4470,7 +4470,7 @@
         },
         {
           "name": "mug-full",
-          "x": 852,
+          "x": 742,
           "y": 652,
           "width": 195,
           "height": 165,
@@ -4478,7 +4478,7 @@
         },
         {
           "name": "bottle-remaining",
-          "x": 998,
+          "x": 888,
           "y": 568,
           "width": 213,
           "height": 295,
@@ -15231,16 +15231,6 @@
           "width": 690,
           "height": 62,
           "text_field": "choice_1"
-        },
-        {
-          "kind": "choice-listen",
-          "value": "window",
-          "text_field": "choice_2",
-          "native_label": true,
-          "x": 825,
-          "y": 716,
-          "width": 690,
-          "height": 62
         }
       ],
       "source_frame": "day-02/scene-07/D02-S07-05.json",
@@ -16548,16 +16538,6 @@
           "width": 690,
           "height": 62,
           "text_field": "choice_1"
-        },
-        {
-          "kind": "choice-listen",
-          "value": "window",
-          "text_field": "choice_2",
-          "native_label": true,
-          "x": 825,
-          "y": 716,
-          "width": 690,
-          "height": 62
         }
       ],
       "source_frame": "day-02/scene-07/D02-S07-declined-05.json",
