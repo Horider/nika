@@ -1,5 +1,8 @@
 extends RefCounted
 
+# Omit repeated explanatory screens without changing legacy save indices.
+const OMITTED_SUMMARY_PAGES := ["D02-S09-06", "D02-S10-03", "D02-S10-04", "D02-S10-05"]
+
 const Trust = preload("res://scripts/trust.gd")
 
 ## Pure story state. Rendering, opening history and loading never commit events.
@@ -158,7 +161,8 @@ func can_advance() -> bool:
 	return not state.finished and current().choices.is_empty()
 
 func skip_bird_flight() -> bool:
-	# Only an early manual exit skips the observation. Listening is a separate fact.
+	# Legacy save fixture only: the runtime no longer exposes an early exit.
+	# Old observations remain truthful; listening is a separate fact.
 	if state.finished or current().id not in ["D02-S08-01", "D02-S08-02"]: return false
 	var page := current().duplicate(true)
 	page.on_exit = [] # Leaving the disappearance page early is not witnessing it.
@@ -171,7 +175,8 @@ func skip_bird_flight() -> bool:
 func _commit_page(page: Dictionary) -> void:
 	var words: Dictionary = strings[page.id]
 	# History contains what the player actually read; it is not a replay control.
-	state.history.append({"page_id": page.id, "day": page.day, "text": words.duplicate(true)})
+	if page.id not in OMITTED_SUMMARY_PAGES:
+		state.history.append({"page_id": page.id, "day": page.day, "text": words.duplicate(true)})
 	for event in page.on_exit:
 		if state.events.has(event.id):
 			continue

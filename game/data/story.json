@@ -8396,7 +8396,7 @@
       "layers": [
         {
           "name": "staging-v4",
-          "packed_scene": "res://scenes/staging-v4/seated-held.tscn",
+          "packed_scene": "res://scenes/TabletLandscapeStage.tscn",
           "mode": "seated-held"
         },
         {
@@ -8563,7 +8563,7 @@
       "layers": [
         {
           "name": "staging-v4",
-          "packed_scene": "res://scenes/staging-v4/seated-held.tscn",
+          "packed_scene": "res://scenes/TabletLandscapeStage.tscn",
           "mode": "seated-held"
         },
         {
@@ -8707,7 +8707,7 @@
       "layers": [
         {
           "name": "staging-v4",
-          "packed_scene": "res://scenes/staging-v4/seated-held.tscn",
+          "packed_scene": "res://scenes/TabletLandscapeStage.tscn",
           "mode": "seated-held"
         },
         {
@@ -8874,7 +8874,7 @@
       "layers": [
         {
           "name": "staging-v4",
-          "packed_scene": "res://scenes/staging-v4/seated-held.tscn",
+          "packed_scene": "res://scenes/TabletLandscapeStage.tscn",
           "mode": "seated-held"
         },
         {
@@ -9048,7 +9048,7 @@
       "layers": [
         {
           "name": "staging-v4",
-          "packed_scene": "res://scenes/staging-v4/seated-held.tscn",
+          "packed_scene": "res://scenes/TabletLandscapeStage.tscn",
           "mode": "seated-held"
         },
         {
@@ -200766,6 +200766,16 @@
       "source": "godot/assets/final-arc/room-own-recording.wav",
       "sha256": "d64b257eab2edd3b6b119a9924d0f82118a0c9a98493a3a2495099af4928fedc",
       "method": "technical mix of existing corridor-air, chair-settle and cloth-bag Foley"
+    },
+    "a_3de37e0084c43e57": {
+      "path": "res://assets/shared/nika-tablet-hands-3de37e0084c4.png",
+      "source": "output/character/currrent_version/niki/tablet-landscape-v1/nika-tablet-hands.png",
+      "sha256": "3de37e0084c43e5721161415d6f775f386a08eca206aa6fcecd2469f7b797be8",
+      "method": "generated_variant",
+      "size": [
+        1024,
+        1536
+      ]
     }
   },
   "audio": {

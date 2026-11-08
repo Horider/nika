@@ -32,6 +32,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pose_at(elapsed + delta)
 
+func is_complete() -> bool:
+	return current_frame >= frame_count - 1
+
 func pose_at(seconds: float) -> void:
 	elapsed = clampf(seconds, 0.0, float(frame_count - 1) / fps)
 	var frame := mini(frame_count - 1, floori(elapsed * fps + 0.0001))

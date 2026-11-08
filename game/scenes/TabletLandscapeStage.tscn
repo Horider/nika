@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/held_tablet_screen.gd" id="screen"]
+
+[ext_resource type="Texture2D" path="res://assets/shared/table-depth-c12d9fc2790e.png" id="room"]
+[ext_resource type="Texture2D" path="res://assets/shared/nika-tablet-hands-3de37e0084c4.png" id="nika"]
+[ext_resource type="Texture2D" path="res://assets/shared/tablet-blank-7336ef9efe1a.png" id="tablet"]
+[ext_resource type="Texture2D" path="res://assets/shared/table-foreground-63529c17c844.png" id="front"]
+[ext_resource type="Texture2D" path="res://assets/shared/camera-56c428cc517f.png" id="camera"]
+[ext_resource type="Texture2D" path="res://assets/shared/speaker-0a73567785b4.png" id="speaker"]
+
+[node name="Stage" type="Node2D"]
+
+[node name="Room" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(0.9569377990430622, 0.9564293304994687)
+texture = ExtResource("room")
+
+
+[node name="Character" type="Node2D" parent="."]
+position = Vector2(544, 80)
+scale = Vector2(0.5, 0.5)
+
+[node name="Nika" type="Sprite2D" parent="Character"]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("nika")
+
+
+[node name="HeldTablet" type="Polygon2D" parent="Character"]
+polygon = PackedVector2Array(285, 940, 720, 915, 800, 1020, 340, 1060)
+texture = ExtResource("tablet")
+uv = PackedVector2Array(0, 1448, 0, 0, 1086, 0, 1086, 1448)
+
+[node name="ScreenContent" type="Node2D" parent="Character"]
+position = Vector2(744, 1002)
+rotation = 3.076593
+scale = Vector2(0.80, 0.38)
+skew = -0.5
+script = ExtResource("screen")
+
+
+[node name="FingerOcclusion" type="Polygon2D" parent="Character"]
+polygon = PackedVector2Array(272, 980, 270, 956, 286, 947, 311, 930, 327, 931, 330, 947, 312, 971, 290, 982)
+texture = ExtResource("nika")
+uv = PackedVector2Array(272, 980, 270, 956, 286, 947, 311, 930, 327, 931, 330, 947, 312, 971, 290, 982)
+
+[node name="SwipeHand" type="Polygon2D" parent="Character"]
+polygon = PackedVector2Array(560, 944, 562, 925, 591, 881, 627, 834, 656, 818, 726, 826, 778, 846, 770, 892, 725, 914, 708, 932, 655, 934, 634, 913, 632, 890, 605, 922, 585, 944, 574, 948)
+texture = ExtResource("nika")
+uv = PackedVector2Array(560, 944, 562, 925, 591, 881, 627, 834, 656, 818, 726, 826, 778, 846, 770, 892, 725, 914, 708, 932, 655, 934, 634, 913, 632, 890, 605, 922, 585, 944, 574, 948)
+
+
+[node name="TableForeground" type="Sprite2D" parent="."]
+centered = false
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("front")
+

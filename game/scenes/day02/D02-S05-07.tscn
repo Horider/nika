@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/shared/panel-hero-a600d98730cc.png" id="img5"]
 
 
-[ext_resource type="PackedScene" path="res://scenes/staging-v4/seated-held.tscn" id="stage_v4"]
+[ext_resource type="PackedScene" path="res://scenes/TabletLandscapeStage.tscn" id="stage_v4"]
 
 [node name="D02-S05-07" type="Node2D"]
 metadata/page_id = "D02-S05-07"

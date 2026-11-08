@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" path="res://assets/shared/navigation-5fba237a1e67.png" id="img4"]
 
 
-[ext_resource type="PackedScene" path="res://scenes/staging-v4/seated-held.tscn" id="stage_v4"]
+[ext_resource type="PackedScene" path="res://scenes/TabletLandscapeStage.tscn" id="stage_v4"]
 
 [node name="D02-S05-04" type="Node2D"]
 metadata/page_id = "D02-S05-04"

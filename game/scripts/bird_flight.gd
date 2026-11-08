@@ -7,6 +7,7 @@ const BIRD_SHADER = preload("res://scripts/bird_cutout.gdshader")
 const STARTS := [Vector2(610, 153), Vector2(686, 137), Vector2(724, 134)]
 const REGIONS := [Rect2(818, 139, 26, 26), Rect2(897, 125, 26, 26), Rect2(934, 122, 26, 26)]
 const VANISH_TIME := 6.8
+const DURATION := 12.0
 @export_range(0, 2) var phase: int = 0
 var elapsed: float = 0.0
 var birds: Array[Sprite2D] = []
@@ -39,7 +40,11 @@ func seek(seconds: float) -> void:
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
-	seek(elapsed + delta)
+	seek(minf(elapsed + delta, DURATION))
+	if is_complete(): set_process(false)
+
+func is_complete() -> bool:
+	return elapsed >= DURATION
 
 func phase_finished() -> bool:
 	return elapsed >= (6.0 if phase == 0 else 8.0) and phase < 2

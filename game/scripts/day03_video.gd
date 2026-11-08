@@ -35,3 +35,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_instance_valid(flight) or Engine.is_editor_hint(): return
 	if playback_mode == "play": flight.seek(minf(flight.elapsed+delta,8.0))
+
+func is_complete() -> bool:
+	return playback_mode != "play" or (is_instance_valid(flight) and flight.elapsed >= 8.0)

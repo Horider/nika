@@ -7,6 +7,8 @@ func _ready() -> void: pose_at(0)
 
 func _process(delta: float) -> void: pose_at(elapsed + delta)
 
+func is_complete() -> bool: return elapsed >= DURATION
+
 func pose_at(seconds: float) -> void:
 	elapsed = clampf(seconds,0,DURATION)
 	var t := smoothstep(0.0, DURATION, elapsed)

@@ -2,6 +2,7 @@ extends Node2D
 
 const Flow = preload("res://scripts/story_flow.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
+const DAY_TRANSITION_SECONDS := 3.0
 @export_range(0, 10) var start_day: int = 0
 var flow: RefCounted
 var catalog: Dictionary
@@ -28,6 +29,8 @@ var replaying := false
 var menu_font: Font
 var title_font: Font
 var menu_message := ""
+var day_transition := ColorRect.new()
+var day_transition_remaining := 0.0
 
 func _ready() -> void:
 	if has_node("EditorPreview"): get_node("EditorPreview").free()
@@ -40,6 +43,12 @@ func _ready() -> void:
 	add_child(interaction)
 	overlay.visible = false
 	add_child(overlay)
+	day_transition.name = "DayTransition"
+	day_transition.size = Vector2(1600, 900)
+	day_transition.color = Color.BLACK
+	day_transition.z_index = 20
+	day_transition.hide()
+	add_child(day_transition)
 	add_child(audio)
 	if AudioServer.get_bus_index("SceneSFX") < 0:
 		AudioServer.add_bus()
@@ -101,6 +110,7 @@ func _button(parent: Node, text: String, box: Rect2, callback: Callable, transpa
 	return button
 
 func _show_overlay(title: String, subtitle: String = "") -> Label:
+	day_transition.hide()
 	_clear(overlay)
 	if audio.playing: audio.stream_paused = true
 	if is_instance_valid(evidence): evidence.set_process(false)
@@ -124,6 +134,7 @@ func _show_overlay(title: String, subtitle: String = "") -> Label:
 	return heading
 
 func _main_menu() -> void:
+	day_transition_remaining = 0.0
 	running = false
 	replaying = false
 	audio.stop()
@@ -161,7 +172,26 @@ func _start_game(day: int, as_replay: bool = false) -> void:
 	flow.new_game(day)
 	running = true
 	_save()
-	_render_page()
+	_begin_day_transition()
+
+func _begin_day_transition() -> void:
+	audio.stop()
+	audio_group = ""
+	playback_page = ""
+	playback_duration = 0.0
+	playback_elapsed = 0.0
+	if is_instance_valid(page_scene): page_scene.free()
+	_clear(interaction)
+	interaction.hide()
+	overlay.hide()
+	overlay_open = false
+	_clear(day_transition)
+	day_transition_remaining = DAY_TRANSITION_SECONDS
+	var caption := _label(day_transition, "ДЕНЬ %d" % int(flow.state.day), Rect2(0, 0, 1600, 900), 64)
+	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	caption.add_theme_color_override("font_color", Color.WHITE)
+	day_transition.show()
 
 func _save(path: String = SaveStore.AUTO_PATH) -> bool:
 	if not autosave_enabled or replaying: return true
@@ -179,10 +209,25 @@ func _resume_save(path: String = SaveStore.AUTO_PATH) -> void:
 		_main_menu()
 		return
 	running = true
+	day_transition_remaining = 0.0
+	day_transition.hide()
+	playback_page = ""
 	if path != SaveStore.AUTO_PATH: _save()
 	_render_page()
 
 func _render_page() -> void:
+	if day_transition_remaining > 0.0:
+		overlay_open = false
+		overlay.hide()
+		day_transition.show()
+		return
+	# Keep page IDs and save indices stable, but omit redundant presentation.
+	# Advancing still commits the recording event used by later visits.
+	var omitted := false
+	while not flow.state.finished and flow.current().id in Flow.OMITTED_SUMMARY_PAGES:
+		if not flow.advance(): break
+		omitted = true
+	if omitted: _save()
 	audio.stream_paused = false
 	overlay.visible = false
 	overlay_open = false
@@ -199,7 +244,8 @@ func _render_page() -> void:
 		evidence.set_process(not evidence.is_complete())
 		return
 	if page.get("entry_movie",false) and is_instance_valid(page_scene) and page_scene.get_meta("page_id","")==page.id and page_scene.has_node("BookFilm") and page_scene.get_node("BookFilm").paused:
-		page_scene.get_node("BookFilm").paused = false
+		if page_scene.get_node("BookFilm").get_meta("completed",false): _next(true)
+		else: page_scene.get_node("BookFilm").paused = false
 		return
 	var bird_time := -1.0
 	var video_time := -1.0
@@ -236,7 +282,6 @@ func _render_page() -> void:
 		film.volume_db = -80.0 if muted else 0.0
 		film.finished.connect(_film_finished.bind(film), CONNECT_DEFERRED | CONNECT_ONE_SHOT)
 		film.play()
-		_button(interaction, "Пропустить  ›", Rect2(1330,826,222,51), _next)
 	elif page.choices.is_empty() and not page.has("auto_seconds"):
 		var area: Array = page.get("next_rect",[1394,826,158,51])
 		_button(interaction, "", Rect2(area[0],area[1],area[2],area[3]), _next, true).tooltip_text = str(strings[page.id].get("next","Далее"))
@@ -272,33 +317,46 @@ func _render_page() -> void:
 	_playback_controls()
 
 func _playback_controls() -> void:
-	if playback_duration <= 0 or not is_instance_valid(page_scene): return
-	var ready := playback_elapsed >= playback_duration
-	if interaction.get_child_count() > 0: interaction.get_child(0).disabled = not ready
+	if not is_instance_valid(page_scene): return
+	var ready := not _advance_locked()
+	for button in interaction.get_children():
+		if button is Button: button.disabled = not ready
 	if page_scene.has_node("Text/next"): page_scene.get_node("Text/next").modulate.a = 1.0 if ready else 0.35
-	if is_instance_valid(audio_cursor): audio_cursor.position.x = 1025 + 422 * clampf(playback_elapsed/playback_duration,0,1)
+	if playback_duration > 0 and is_instance_valid(audio_cursor): audio_cursor.position.x = 1025 + 422 * clampf(playback_elapsed/playback_duration,0,1)
+
+func _advance_locked(automatic: bool = false) -> bool:
+	if day_transition_remaining > 0.0 or playback_duration > playback_elapsed: return true
+	if is_instance_valid(evidence) and not evidence.is_complete(): return true
+	if not is_instance_valid(page_scene): return false
+	var film := page_scene.get_node_or_null("BookFilm")
+	if film and not film.get_meta("completed", false): return true
+	for path in ["Art", "VideoPlayback"]:
+		var animation := page_scene.get_node_or_null(path)
+		if animation and animation.has_method("is_complete") and not animation.is_complete(): return true
+	var flight := page_scene.get_node_or_null("Art/BirdFlight")
+	if flight:
+		# Automatic text cues share the uninterrupted flight clock. Only the
+		# final phase offers manual navigation, after the full clip has ended.
+		return not flight.phase_finished() if automatic else flight.phase < 2 or not flight.is_complete()
+	return false
 
 func _next(automatic: bool = false) -> void:
 	if overlay_open: return
 	if not automatic and flow.current().has("auto_seconds"): return
-	if playback_duration > playback_elapsed: return
-	if is_instance_valid(evidence) and not evidence.is_complete(): return
-	if not automatic and is_instance_valid(page_scene) and page_scene.has_node("Art/BirdFlight"):
-		var flight := page_scene.get_node("Art/BirdFlight")
-		if flight.elapsed < flight.VANISH_TIME and flow.skip_bird_flight():
-			_save()
-			_render_page()
-			return
+	if _advance_locked(automatic): return
+	var previous_day: int = flow.state.day
 	if flow.advance():
 		_save()
-		_render_page()
+		if flow.state.day != previous_day: _begin_day_transition()
+		else: _render_page()
 
 func _film_finished(film: VideoStreamPlayer) -> void:
-	if running and not overlay_open and is_instance_valid(film) and film.get_parent() == page_scene:
-		_next(true)
+	if running and is_instance_valid(film) and film.get_parent() == page_scene:
+		film.set_meta("completed", true)
+		if not overlay_open: _next(true)
 
 func _choose(value: String) -> void:
-	if overlay_open: return
+	if overlay_open or _advance_locked(): return
 	if flow.choose(value):
 		_save()
 		_render_page()
@@ -326,6 +384,13 @@ func _set_audio(page: Dictionary, replay: bool = false) -> void:
 	audio.play(audio_start_seconds)
 
 func _process(_delta: float) -> void:
+	if running and not overlay_open and day_transition_remaining > 0.0:
+		day_transition_remaining = maxf(0.0, day_transition_remaining - _delta)
+		if day_transition_remaining == 0.0:
+			day_transition.hide()
+			_render_page()
+		return
+	if running and not overlay_open: _playback_controls()
 	if running and not overlay_open and not flow.state.finished and playback_duration > 0:
 		playback_elapsed = minf(playback_duration,playback_elapsed+_delta)
 		_playback_controls()
@@ -478,7 +543,7 @@ func _show_end() -> void:
 func _continue_visit() -> void:
 	if flow.continue_visit():
 		_save()
-		_render_page()
+		_begin_day_transition()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
